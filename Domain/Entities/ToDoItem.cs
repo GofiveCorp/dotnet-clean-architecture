@@ -9,5 +9,6 @@ namespace Domain.Entities
         public string Note {get; set; }
         public int Priority { get; set; }
         public int Status { get; set; }
+
     }
 }
