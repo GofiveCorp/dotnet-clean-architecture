@@ -1,10 +1,10 @@
 ﻿using System;
 using Domain.Entities;
 
-namespace Company.ClassLibrary1;
+namespace Core.Contracts.Persistence;
 
 public interface IToDoListRepository {
-    Task<ToDoList> CreateToDoList(ToDoList toDoList);
+    Task<int> CreateToDoList(ToDoList toDoList);
     Task<List<ToDoList>> GetToDoLists();
     Task<List<ToDoList>> UpdateToDoList(ToDoList toDoList);
     Task<bool> DeletToDoList(int todoListId);
