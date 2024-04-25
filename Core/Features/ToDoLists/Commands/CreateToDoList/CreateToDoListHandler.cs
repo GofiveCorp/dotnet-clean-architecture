@@ -2,6 +2,8 @@
 using Company.ClassLibrary1;
 using Core.Contracts.Persistence;
 using Domain.Entities;
+using FluentValidation.Results;
+using FluentValidation.TestHelper;
 using MediatR;
 
 namespace Core.Features.ToDoLists.Commands.CreateToDoList;
@@ -13,11 +15,14 @@ public class CreateToDoListHandler : IRequestHandler<CreateToDoListCommand, ToDo
     }
 
     public async Task<ToDoList> Handle(CreateToDoListCommand request, CancellationToken cancellationToken) {
-        var toDoListModel = new ToDoList() {
-            Title = request.Title,
-            DateCreated = DateTime.UtcNow,
-        };
-        var response = await _toDoListRepository.CreateToDoList(toDoListModel);
+
+        var validator = new CreateToDoListValidatior(_toDoListRepository);
+        var validatorResult = await validator.ValidateAsync(request, cancellationToken);
+        if (validatorResult.IsValid is false) {
+            throw new ValidationTestException("Bad request.", validatorResult.Errors);
+        }
+
+        var response = await _toDoListRepository.CreateToDoList(request.Title);
         return response;
     }
 }

@@ -16,7 +16,11 @@ namespace Infra.Database.Repositories {
             this.dbContext = dbContext;
         }
 
-        public async Task<ToDoList> CreateToDoList(ToDoList toDoList) {
+        public async Task<ToDoList> CreateToDoList(string title) {
+            var toDoList = new ToDoList {
+                Title = title,
+                DateCreated = DateTime.Now,
+            };
             await dbContext.ToDoLists.AddAsync(toDoList);
             await dbContext.SaveChangesAsync();
             return toDoList;
@@ -35,12 +39,17 @@ namespace Infra.Database.Repositories {
             return await dbContext.ToDoLists.AsNoTracking().ToListAsync();
         }
 
+        public async Task<bool> IsUniqueTitle(string title) {
+            var duplicate = await dbContext.ToDoLists.AsNoTracking().AnyAsync(a => a.Title.Equals(title));
+            return duplicate is false;
+        }
+
         public async Task<ToDoList> UpdateToDoList(int toDoListId, string title) {
             var todoList = await dbContext.ToDoLists.FirstOrDefaultAsync(f => f.ToDoListId == toDoListId);
             if (todoList is null)
                 return null;
             todoList.Title = title;
-            todoList.DateUpdated = DateTime.UtcNow;
+            todoList.DateUpdated = DateTime.Now;
             dbContext.Update(todoList);
             await dbContext.SaveChangesAsync();
             return todoList;

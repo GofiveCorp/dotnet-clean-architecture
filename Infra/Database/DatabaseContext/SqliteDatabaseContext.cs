@@ -9,6 +9,7 @@ namespace Infra.Database.DatabaseContext {
         }
 
         public DbSet<ToDoList> ToDoLists => Set<ToDoList>();
+        public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
 
         protected override void OnModelCreating(ModelBuilder builder) {
             base.OnModelCreating(builder);
