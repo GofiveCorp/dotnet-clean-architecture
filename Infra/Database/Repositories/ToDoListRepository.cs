@@ -16,22 +16,34 @@ namespace Infra.Database.Repositories {
             this.dbContext = dbContext;
         }
 
-        public async Task<int> CreateToDoList(ToDoList toDoList) {
-            var response = await dbContext.ToDoLists.AddAsync(toDoList);
+        public async Task<ToDoList> CreateToDoList(ToDoList toDoList) {
+            await dbContext.ToDoLists.AddAsync(toDoList);
             await dbContext.SaveChangesAsync();
-            return 1;
+            return toDoList;
         }
 
-        public Task<bool> DeletToDoList(int todoListId) {
-            throw new NotImplementedException();
+        public async Task<bool> DeletToDoList(int todoListId) {
+            var todoList = await dbContext.ToDoLists.FirstOrDefaultAsync(f => f.ToDoListId == todoListId);
+            if (todoList is null)
+                return false;
+            dbContext.ToDoLists.Remove(todoList);
+            await dbContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<ToDoList>> GetToDoLists() {
             return await dbContext.ToDoLists.AsNoTracking().ToListAsync();
         }
 
-        public Task<List<ToDoList>> UpdateToDoList(ToDoList toDoList) {
-            throw new NotImplementedException();
+        public async Task<ToDoList> UpdateToDoList(int toDoListId, string title) {
+            var todoList = await dbContext.ToDoLists.FirstOrDefaultAsync(f => f.ToDoListId == toDoListId);
+            if (todoList is null)
+                return null;
+            todoList.Title = title;
+            todoList.DateUpdated = DateTime.UtcNow;
+            dbContext.Update(todoList);
+            await dbContext.SaveChangesAsync();
+            return todoList;
         }
     }
 }

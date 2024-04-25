@@ -7,8 +7,7 @@ namespace Domain.Entities
         public int TodoListId { get; set; }
         public string Title { get; set; }
         public string Note {get; set; }
-        public int Priority { get; set; }
-        public int Status { get; set; }
-
+        public bool Done { get; set; }
+        public virtual ToDoList ToDoList { get; set; }
     }
 }
