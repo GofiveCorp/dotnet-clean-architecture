@@ -1,7 +1,7 @@
 ﻿using System;
 using Domain.Entities;
 
-namespace Core.Contracts.Persistence;
+namespace Core.Contracts.Repository;
 
 public interface IToDoListRepository {
     Task<ToDoList> CreateToDoList(string title);

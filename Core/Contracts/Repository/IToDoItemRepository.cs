@@ -1,7 +1,7 @@
 ﻿using System;
 using Domain.Entities;
 
-namespace Company.ClassLibrary1;
+namespace Core.Contracts.Repository;
 
 public interface IToDoItemRepository {
     Task<ToDoItem> CreateToDoItem(int toDoListId, string title, string note);

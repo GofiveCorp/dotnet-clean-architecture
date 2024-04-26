@@ -1,4 +1,4 @@
-﻿using Core.Contracts.Persistence;
+﻿using Core.Contracts.Repository;
 using Domain.Entities;
 using Infra.Database.DatabaseContext;
 using Microsoft.EntityFrameworkCore;

@@ -1,4 +1,4 @@
-﻿using Core.Contracts.Persistence;
+﻿using Core.Contracts.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;

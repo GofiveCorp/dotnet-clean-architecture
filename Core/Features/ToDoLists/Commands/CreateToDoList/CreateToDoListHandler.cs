@@ -1,6 +1,5 @@
 ﻿using System;
-using Company.ClassLibrary1;
-using Core.Contracts.Persistence;
+using Core.Contracts.Repository;
 using Domain.Entities;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;

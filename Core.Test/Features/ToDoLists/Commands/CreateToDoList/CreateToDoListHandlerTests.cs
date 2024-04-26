@@ -1,4 +1,4 @@
-﻿using Core.Contracts.Persistence;
+﻿using Core.Contracts.Repository;
 using Core.Features.ToDoLists.Commands.CreateToDoList;
 using Domain.Entities;
 using FluentValidation.TestHelper;

@@ -1,4 +1,4 @@
-﻿using Core.Contracts.Persistence;
+﻿using Core.Contracts.Repository;
 using MediatR;
 
 namespace Core.Features.ToDoLists.Queries.GetToDoLists;

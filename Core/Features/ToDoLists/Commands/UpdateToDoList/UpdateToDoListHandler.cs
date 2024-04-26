@@ -1,5 +1,4 @@
-﻿using Company.ClassLibrary1;
-using Core.Contracts.Persistence;
+﻿using Core.Contracts.Repository;
 using Domain.Entities;
 using MediatR;
 using System;
