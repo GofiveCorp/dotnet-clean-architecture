@@ -1,5 +1,6 @@
 
 # Clean architecture with dotnet 8
+The project is not yet complete. You should complete the ToDoItems.
 ### Getting started
 The following is required to build and run the project
  - [.NET8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
